@@ -90,12 +90,26 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\boostrap\bootstrap-theme.css" />
+    <Content Include="Content\css\boostrap\bootstrap-theme.min.css" />
+    <Content Include="Content\css\boostrap\bootstrap.css" />
+    <Content Include="Content\css\boostrap\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DataResourceMonitor.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\boostrap\bootstrap.js" />
+    <Content Include="Scripts\boostrap\bootstrap.min.js" />
+    <Content Include="Scripts\boostrap\npm.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Content\css\boostrap\bootstrap-theme.css.map" />
+    <Content Include="Content\css\boostrap\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\boostrap\bootstrap.css.map" />
+    <Content Include="Content\css\boostrap\bootstrap.min.css.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
