@@ -99,6 +99,16 @@
     <Content Include="Content\imgs\refresh.png" />
     <Content Include="Content\imgs\set.png" />
     <Content Include="Content\imgs\subSet.png" />
+    <Content Include="Content\imgs\u318.png" />
+    <Content Include="Content\imgs\u324.png" />
+    <Content Include="Content\imgs\u332.png" />
+    <Content Include="Content\imgs\u340.png" />
+    <Content Include="Content\imgs\u347.png" />
+    <Content Include="Content\imgs\u355.png" />
+    <Content Include="Content\imgs\u363.png" />
+    <Content Include="Content\imgs\u370.png" />
+    <Content Include="Content\imgs\u377.png" />
+    <Content Include="Content\imgs\u379.png" />
     <Content Include="Content\Site.css" />
     <Content Include="DataResourceMonitor.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
