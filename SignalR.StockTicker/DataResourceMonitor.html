@@ -5,6 +5,11 @@
     <title>数据资源监控中心</title>
     <link href="Content/css/boostrap/bootstrap.min.css" rel="stylesheet" />
     <style>
+        body, html {
+            margin: 0px;
+            height: 100%;
+        }
+
         .top {
             width: 100%;
             height: 100px;
@@ -12,20 +17,953 @@
 
         .content {
             width: 100%;
+            /*border: 1px solid red;*/
+            position: relative;
+        }
+
+        .row {
+            margin: 0;
+            /*border: 1px solid red;*/
+            position: relative;
+        }
+
+        .col-md-4 {
+            padding: 5px;
+            display: inline-block;
+        }
+
+            .col-md-4 > div {
+                background-color: #003300;
+            }
+
+        .title {
+            height: 50px;
+            position: relative;
+            padding: 3px 5px;
+            font-weight: bold;
+            font-size: 20pt;
+            background-color: #339933;
+            color: #FFFFFF;
+        }
+
+        .title-refresh {
+            position: absolute;
+            right: 55px;
+        }
+
+        .title-set {
+            position: absolute;
+            right: 20px;
+        }
+
+        .subTitle {
+            position: relative;
+            height: 34px;
+            font-size: 12pt;
+            /*border:1px solid red;*/
+            padding: 2px 10px;
+        }
+
+        .subtitle-refresh {
+            position: absolute;
+            right: 33px;
+        }
+
+        .subtitle-set {
+            position: absolute;
+            right: 10px;
+        }
+
+        .subTitle-unit {
+            position: absolute;
+            right: 10px;
+        }
+
+        .subContainer {
+            background-color: #003300;
+            color: #FFFFFF;
+        }
+
+        hr {
+            margin: 0 10px;
+            padding: 0;
+            border: 2px solid #000000;
+        }
+
+        .media {
+            display: inline-block;
+            float: left;
+            margin-left: 10px;
+        }
+
+        .font-color-yellow {
+            color: #FF9900;
+        }
+
+        .font-color-gray {
+            color: #999999;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="top" id="top"></div>
+    <div class="container-fluid" id="body-container" style="visibility:hidden;">
+        <div class="top" id="body-top"></div>
         <div class="content" id="content">
             <div class="row">
-                <div class="col-md-4">1</div>
-                <div class="col-md-4">2</div>
-                <div class="col-md-4">3</div>
+                <div class="col-md-4">
+                    <div class="mainBDC" id="mainBdc">
+                        <div class="title">
+                            <span>主要不动产</span>
+                        </div>
+                        <div>
+                            <div class="subContainer">
+                                <div class="subTitle">
+                                    <span>有效客体数据量</span>
+                                    <span class="subtitle-refresh" aria-hidden="true">
+                                        <a title="刷新" id="effectiveObjectData"><img src="Content/imgs/refresh.png" width="15" height="15" /></a>
+                                    </span>
+                                    <span class="subtitle-set" aria-hidden="true">
+                                        <a title="设置"><img src="Content/imgs/subSet.png" width="14" height="14" /></a>
+                                    </span>
+                                </div>
+                                <div class="chart-effectiveObjectData" style="padding: 10px;">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <a>
+                                                <img class="media-object" width="80" height="80" src="Content/imgs/house.png" alt="房屋">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="media-heading">房屋</p>
+                                            <p><span class="font-color-yellow">952</span><span class="font-color-gray">套</span></p>
+                                            <p><span class="font-color-yellow">1.5</span><span class="font-color-gray">万平方米</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <a>
+                                                <img class="media-object" width="80" height="80" src="Content/imgs/jz.png" alt="房屋">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="media-heading">构建物</p>
+                                            <p><span class="font-color-yellow">1,,210</span><span class="font-color-gray">宗</span></p>
+                                            <p><span class="font-color-yellow">2,922</span><span class="font-color-gray">亩</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="subContainer">
+                                <div class="subTitle">
+                                    <span>房屋增长趋势</span>
+                                    <span class="subtitle-refresh" aria-hidden="true">
+                                        <a title="刷新" id="houseGrowthTrend"><img src="Content/imgs/refresh.png" width="15" height="15" /></a>
+                                    </span>
+                                    <span class="subtitle-set" aria-hidden="true">
+                                        <a title="设置"><img src="Content/imgs/subSet.png" width="14" height="14" /></a>
+                                    </span>
+                                </div>
+                                <div class="chart-houseGrowthTrend" id="chart-houseGrowthTrend">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="totalRegBusAmount " id="totalBusAmount">
+                        <div class="title">
+                            <span>不动产登记业务总量</span>
+                        </div>
+                        <div>
+                            <div class="subContainer">
+                                <div class="subTitle">
+                                    <span>业务数据量（100,000件）</span>
+                                    <span class="subtitle-refresh" aria-hidden="true">
+                                        <a id="busAmount" title="刷新"><img src="Content/imgs/refresh.png" width="15" height="15" /></a>
+                                    </span>
+                                    <span class="subtitle-set" aria-hidden="true">
+                                        <a title="设置"><img src="Content/imgs/subSet.png" width="14" height="14" /></a>
+                                    </span>
+                                </div>
+                                <div class="chart-busAmount" id="chart-busAmount">
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="subContainer">
+                                <div class="subTitle">
+                                    <span>现势和历史业务数据量对比情况</span>
+                                    <span class="subtitle-refresh" aria-hidden="true">
+                                        <a title="刷新" id="curAndHisBusAmouCom"><img src="Content/imgs/refresh.png" width="15" height="15" /></a>
+                                    </span>
+                                    <span class="subtitle-set" aria-hidden="true">
+                                        <a title="设置"><img src="Content/imgs/subSet.png" width="14" height="14" /></a>
+                                    </span>
+                                </div>
+                                <div class="chart-curAndHisBusAmouCom" id="chart-curAndHisBusAmouCom">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="position:absolute;top:0px;">
+                    <div class="currentRegBusAmount " id="currentRegBusAmount">
+                        <div class="title">
+                            <span>不动产现势登记业务量</span>
+                            <span class="title-refresh" aria-hidden="true">
+                                <a title="刷新" id="totalBusAmount"><img src="Content/imgs/refresh.png" width="27" height="27" /></a>
+                            </span>
+                            <span class="title-set" aria-hidden="true">
+                                <a title="设置"><img src="Content/imgs/set.png" width="24" height="24" /></a>
+                            </span>
+                        </div>
+                        <div>
+                            <div class="subContainer">
+                                <div class="subTitle">
+                                    <span>登记业务汇总</span>
+                                    <span class="subTitle-unit">单位：件</span>
+                                </div>
+                                <div class="chart-totalBusAmount" id="chart-totalBusAmount">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script src="Scripts/boostrap/bootstrap.min.js"></script>
+    <script>
+        var $body = $('body');
+        var $colmd4 = $('.col-md-4');
+        var $bodyTop = $('#body-top');
+        var $bodyCont = $('#body-container');
+        var $content = $('#content');
+        var $currentRegBusAmount = $('#currentRegBusAmount');
+        var $mainBdc = $('#mainBdc');
+        var $totalBusAmount = $('#totalBusAmount');
+
+        $content.height($body.height() - $bodyTop.height() - 10);
+        $colmd4.width($content.width() / 3 - 3);
+        $colmd4.height($content.height() - 10);
+        $mainBdc.find('.subContainer').height($colmd4.height() / 2 - 27);
+        $totalBusAmount.find('.subContainer').height($colmd4.height() / 2 - 27);
+        $currentRegBusAmount.find('.subContainer').height($colmd4.height() - 51);
+
+        $bodyCont.css({ visibility: 'visible' });
+
+        $('a').on('click', function () {
+            var $this = $(this);
+            var id = $this.attr('id');
+            switch (id) {
+                case 'busAmount'://业务数据量
+                    busAmountFunc($this);
+                    break;
+                case 'totalBusAmount'://业务数据总量
+                    totalBusAmountFunc($this);
+                    break;
+                case 'houseGrowthTrend'://房屋增长趋势
+                    houseGrowthTrendFunc($this);
+                    break;
+                case 'curAndHisBusAmouCom'://现势和历史业务数据量对比情况
+                    curAndHisBusAmouComFunc($this);
+                    break;
+            }
+        });
+    </script>
+    <script src="Scripts/echarts/source/echarts-all.js"></script>
+    <script>
+        var busAmountFunc = function ($sender) {
+            var $chartBusAmount = $('#chart-busAmount');
+            //计算布局
+            $chartBusAmount.height($chartBusAmount.parent().height() - 50);
+            //渲染图表
+            var myChart = echarts.init($chartBusAmount.get(0), 'macarons');
+            var option = chartBusAmountOptions();
+            chartBusAmount(myChart, option);
+        };
+        var totalBusAmountFunc = function ($sender) {
+            var $chartTotalBusAmount = $('#chart-totalBusAmount');
+            //计算布局
+            $chartTotalBusAmount.height($chartTotalBusAmount.parent().height() - 50);
+            //渲染图表
+            var myChart = echarts.init($chartTotalBusAmount.get(0), 'macarons');
+            var option = chartTotalBusAmountOptions();
+            chartTotalBusAmount(myChart, option);
+        };
+        var houseGrowthTrendFunc = function ($sender) {
+            var $chartHouseGrowthTrend = $('#chart-houseGrowthTrend');
+            //计算布局
+            $chartHouseGrowthTrend.height($chartHouseGrowthTrend.parent().height() - 50);
+            //渲染图表
+            var myChart = echarts.init($chartHouseGrowthTrend.get(0), 'macarons');
+            var option = chartHouseGrowthTrendOptions();
+            chartHouseGrowthTrend(myChart, option);
+        };
+        var curAndHisBusAmouComFunc = function ($sender) {
+            var $chartCurAndHisBusAmouCom = $('#chart-curAndHisBusAmouCom');
+            //计算布局
+            $chartCurAndHisBusAmouCom.height($chartCurAndHisBusAmouCom.parent().height() - 50);
+            //渲染图表
+            var myChart = echarts.init($chartCurAndHisBusAmouCom.get(0), 'macarons');
+            var option = chartCurAndHisBusAmouComOptions();
+            chartCurAndHisBusAmouCom(myChart, option);
+        };
+        //业务数据量图表
+        function chartBusAmountOptions(source) {
+            //定制报表参数
+            var option = {
+                legend: {
+                    orient: 'horizontal',
+                    x: 'center',
+                    data: ['历史数据', '现势数据'],
+                    textStyle: {
+                        color: '#FFFFFF'
+                    }
+                },
+                series: [
+                    {
+                        name: '业务数据量',
+                        type: 'pie',
+                        radius: '70%',
+                        center: ['50%', '60%'],
+                        data: [
+                            { value: 60, name: '历史数据' },
+                            { value: 40, name: '现势数据' }
+                        ],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    position: 'inner',
+                                    formatter: '{d}%',
+                                    textStyle:
+                                    {
+                                        fontSize: '20',
+                                        fontWeight: "bold"
+                                    }
+                                },
+                                labelLine:
+                                {
+                                    show: false
+                                }
+                            }
+                        },
+                    }
+                ],
+                color: ['#0099FF', '#00CC00'],
+                tooltip: {
+                    show: true,
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)",
+                    borderRadius: 8,
+                    borderWidth: 2,
+                    padding: 10,
+                    backgroundColor: 'rgba(255,0,255,0.7)',
+                    borderColor: '#f50',
+                    textStyle: {
+                        color: 'yellow',
+                        decoration: 'none',
+                        fontFamily: 'Verdana, sans-serif',
+                        fontSize: 15,
+                        fontStyle: 'italic',
+                        fontWeight: 'bold'
+                    },
+                    axisPointer: {
+                        type: 'none'//去掉指示线
+                    }
+                },
+            };
+            return option;
+        }
+        function chartBusAmount(myChart, options) {
+            myChart.clear();
+            // 为echarts对象加载数据
+            myChart.showLoading({
+                text: '数据读取中...',
+                effect: 'ring',
+                textStyle: {
+                    fontSize: 20
+                }
+            });
+            clearTimeout(loadingTicket);
+            var loadingTicket = setTimeout(function () {
+                myChart.hideLoading();
+                myChart.setOption(options);
+            }, 2000);
+        }
+        //业务数据总量图表
+        function chartTotalBusAmountOptions(source) {
+            //定制报表参数
+            var option = {
+                grid: {
+                    y: 20,
+                    x2: 30,
+                    y2: 20,
+                    borderWidth: 0
+                },
+                "tooltip": {
+                    "show": true,
+                    "trigger": "axis",
+                    "borderRadius": 8,
+                    "borderWidth": 2,
+                    "padding": 10,
+                    "backgroundColor": "rgba(255,0,255,0.7)",
+                    "borderColor": "#f50",
+                    "textStyle": {
+                        "color": "yellow",
+                        "decoration": "none",
+                        "fontFamily": "Verdana, sans-serif",
+                        "fontSize": 15,
+                        "fontStyle": "italic",
+                        "fontWeight": "bold"
+                    },
+                    "axisPointer": {
+                        "type": "none"
+                    }
+                },
+                "yAxis": [
+                    {
+                        "type": "category",
+                        "data": [
+                            "集体\n土地\n所有权",
+                            "国有\n建设\n地使用权",
+                            "林权"
+                        ],
+                        axisLabel: {
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "xAxis": [
+                    {
+                        "type": "value",
+                        "axisLabel": {
+                            "formatter": "{value}",
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "series": [
+                    {
+                        "yAxisIndex": 0,
+                        "data": [
+                            {
+                                "name": "集体土地所有权",
+                                "value": 401
+                            },
+                            {
+                                "value": 63,
+                                "name": "国有建设地使用权"
+                            },
+                            {
+                                "value": 300,
+                                "name": "林权"
+                            }
+                        ],
+                        "type": "bar",
+                        "itemStyle": {
+                            "normal": {
+                                "label": {
+                                    "show": true,
+                                    "textStyle": {
+                                        "fontSize": "20",
+                                        "fontWeight": "bold",
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "color": [
+                    "#00FFFF"
+                ]
+            };
+            return option;
+        }
+        function chartTotalBusAmount(myChart, options) {
+            myChart.clear();
+            // 为echarts对象加载数据
+            myChart.showLoading({
+                text: '数据读取中...',
+                effect: 'ring',
+                textStyle: {
+                    fontSize: 20
+                }
+            });
+            clearTimeout(loadingTicket);
+            var loadingTicket = setTimeout(function () {
+                myChart.hideLoading();
+                myChart.setOption(options);
+            }, 2000);
+        }
+        //房屋增长趋势图表
+        function chartHouseGrowthTrendOptions(source) {
+            //定制报表参数
+            var option = {
+                grid: {
+                    y: 40,
+                    x: 50,
+                    x2: 50,
+                    y2: 50,
+                    borderWidth: 0
+                },
+                "tooltip": {
+                    "show": true,
+                    "trigger": "axis",
+                    "borderRadius": 8,
+                    "borderWidth": 2,
+                    "padding": 10,
+                    "backgroundColor": "rgba(255, 0,255,0.7)",
+                    "borderColor": "#f50",
+                    "textStyle": {
+                        "color": "yellow",
+                        "decoration": "none",
+                        "fontFamily": "Verdana,sans-serif",
+                        "fontSize": 15,
+                        "fontStyle": "italic",
+                        "fontWeight": "bold"
+                    },
+                    "axisPointer": {
+                        "type": "none"
+                    }
+                },
+                "legend": {
+                    "show": true,
+                    "data": [
+                        "房屋数量",
+                        "房屋面积"
+                    ],
+                    "y": "bottom",
+                    "textStyle": {
+                        "fontSize": 15
+                    },
+                    textStyle: {
+                        color: '#FFFFFF'
+                    }
+                },
+                "xAxis": [
+                    {
+                        "type": "category",
+                        "data": [
+                            "周一",
+                            "周二",
+                            "周三",
+                            "周四",
+                            "周五"
+                        ],
+                        "axisLabel": {
+                            "formatter": "{value}",
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "yAxis": [
+                    {
+                        "name": "单位:套",
+                        "type": "value",
+                        axisLabel: {
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    },
+                    {
+                        "name": "单位:万平方米",
+                        "type": "value",
+                        "axisLabel": {
+                            "formatter": "{value}",
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "series": [
+                    {
+                        "name": "房屋数量",
+                        "yAxisIndex": 0,
+                        "data": [
+                            {
+                                "name": "周一",
+                                "value": 0
+                            },
+                            {
+                                "name": "周二",
+                                "value": 0
+                            },
+                            {
+                                "name": "周三",
+                                "value": 0
+                            },
+                            {
+                                "name": "周三",
+                                "value": 833
+                            },
+                            {
+                                "name": "周五",
+                                "value": 0
+                            }
+                        ],
+                        "type": "line",
+                        "itemStyle": {
+                            "normal": {
+                                "label": {
+                                    "show": true,
+                                    "formatter": "{c}",
+                                    "textStyle": {
+                                        "fontSize": "20",
+                                        "fontWeight": "bold"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "房屋面积",
+                        "yAxisIndex": 1,
+                        "data": [
+                            {
+                                "name": "周一",
+                                "value": 0
+                            },
+                            {
+                                "name": "周二",
+                                "value": 300
+                            },
+                            {
+                                "name": "周三",
+                                "value": 60
+                            },
+                            {
+                                "name": "周四",
+                                "value": -64
+                            },
+                            {
+                                "name": "周五",
+                                "value": -43
+                            }
+                        ],
+                        "type": "line",
+                        "itemStyle": {
+                            "normal": {
+                                "label": {
+                                    "show": true,
+                                    "formatter": "{c}",
+                                    "textStyle": {
+                                        "fontSize": "20",
+                                        "fontWeight": "bold"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "color": [
+                    "#00FF66",
+                    "#FF9900"
+                ]
+            };
+            return option;
+        }
+        function chartHouseGrowthTrend(myChart, options) {
+            myChart.clear();
+            // 为echarts对象加载数据
+            myChart.showLoading({
+                text: '数据读取中...',
+                effect: 'ring',
+                textStyle: {
+                    fontSize: 20
+                }
+            });
+            clearTimeout(loadingTicket);
+            var loadingTicket = setTimeout(function () {
+                myChart.hideLoading();
+                myChart.setOption(options);
+            }, 2000);
+        }
+        //现势和历史业务数据量对比情况图表
+        function chartCurAndHisBusAmouComOptions(source) {
+            //定制报表参数
+            var option = {
+                grid: {
+                    y: 40,
+                    x: 50,
+                    x2: 50,
+                    y2: 20,
+                    borderWidth: 0
+                },
+                "tooltip": {
+                    "show": true,
+                    "trigger": "axis",
+                    "borderRadius": 8,
+                    "borderWidth": 2,
+                    "padding": 10,
+                    "backgroundColor": "rgba(255, 0,255,0.7)",
+                    "borderColor": "#f50",
+                    "textStyle": {
+                        "color": "yellow",
+                        "decoration": "none",
+                        "fontFamily": "Verdana,sans-serif",
+                        "fontSize": 15,
+                        "fontStyle": "italic",
+                        "fontWeight": "bold"
+                    },
+                    "axisPointer": {
+                        "type": "none"
+                    }
+                },
+                "xAxis": [
+                    {
+                        "type": "category",
+                        "data": [
+                            "01月",
+                            "02月",
+                            "03月",
+                            "04月",
+                            "05月",
+                            "06月"
+                        ],
+                        "axisLabel": {
+                            "formatter": "{value}",
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "yAxis": [
+                    {
+                        "name": "单位:套",
+                        "type": "value",
+                        axisLabel: {
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    },
+                    {
+                        "name": "单位:万平方米",
+                        "type": "value",
+                        "axisLabel": {
+                            "formatter": "{value}",
+                            textStyle: {
+                                color: '#FFFFFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 0,
+                                color: '#FFFFFF'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                width: 0
+                            }
+                        }
+                    }
+                ],
+                "series": [
+                    {
+                        "name": "房屋数量",
+                        "yAxisIndex": 0,
+                        "data": [
+                            {
+                                "name": "01月",
+                                "value": 0
+                            },
+                            {
+                                "name": "02月",
+                                "value": 0
+                            },
+                            {
+                                "name": "03月",
+                                "value": 0
+                            },
+                            {
+                                "name": "04月",
+                                "value": 833
+                            },
+                            {
+                                "name": "05月",
+                                "value": 0
+                            },
+                            {
+                                "name": "06月",
+                                "value": -89
+                            }
+                        ],
+                        "type": "line",
+                        "itemStyle": {
+                            "normal": {
+                                "label": {
+                                    "show": true,
+                                    "formatter": "{c}",
+                                    "textStyle": {
+                                        "fontSize": "20",
+                                        "fontWeight": "bold"
+                                    }
+                                },
+                                areaStyle: { type: 'default' }
+                            }
+                        }
+                    },
+                    {
+                        "name": "房屋面积",
+                        "yAxisIndex": 1,
+                        "data": [
+                            {
+                                "name": "01月",
+                                "value": 0
+                            },
+                            {
+                                "name": "02月",
+                                "value": 300
+                            },
+                            {
+                                "name": "03月",
+                                "value": 60
+                            },
+                            {
+                                "name": "04月",
+                                "value": -64
+                            },
+                            {
+                                "name": "05月",
+                                "value": -43
+                            },
+                            {
+                                "name": "06月",
+                                "value": -93
+                            }
+                        ],
+                        "type": "line",
+                        "itemStyle": {
+                            "normal": {
+                                "label": {
+                                    "show": true,
+                                    "formatter": "{c}",
+                                    "textStyle": {
+                                        "fontSize": "20",
+                                        "fontWeight": "bold"
+                                    }
+                                },
+                                areaStyle: { type: 'default' }
+                            }
+                        }
+                    }
+                ],
+                "color": [
+                    "#00FF66",
+                    "#6699FF"
+                ]
+            };
+            return option;
+        }
+        function chartCurAndHisBusAmouCom(myChart, options) {
+            myChart.clear();
+            // 为echarts对象加载数据
+            myChart.showLoading({
+                text: '数据读取中...',
+                effect: 'ring',
+                textStyle: {
+                    fontSize: 20
+                }
+            });
+            clearTimeout(loadingTicket);
+            var loadingTicket = setTimeout(function () {
+                myChart.hideLoading();
+                myChart.setOption(options);
+            }, 2000);
+        }
+    </script>
 </body>
 </html>

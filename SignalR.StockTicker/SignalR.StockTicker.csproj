@@ -94,6 +94,11 @@
     <Content Include="Content\css\boostrap\bootstrap-theme.min.css" />
     <Content Include="Content\css\boostrap\bootstrap.css" />
     <Content Include="Content\css\boostrap\bootstrap.min.css" />
+    <Content Include="Content\imgs\house.png" />
+    <Content Include="Content\imgs\jz.png" />
+    <Content Include="Content\imgs\refresh.png" />
+    <Content Include="Content\imgs\set.png" />
+    <Content Include="Content\imgs\subSet.png" />
     <Content Include="Content\Site.css" />
     <Content Include="DataResourceMonitor.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -101,6 +106,25 @@
     <Content Include="Scripts\boostrap\bootstrap.js" />
     <Content Include="Scripts\boostrap\bootstrap.min.js" />
     <Content Include="Scripts\boostrap\npm.js" />
+    <Content Include="Scripts\echarts\source\chart\bar.js" />
+    <Content Include="Scripts\echarts\source\chart\chord.js" />
+    <Content Include="Scripts\echarts\source\chart\eventRiver.js" />
+    <Content Include="Scripts\echarts\source\chart\force.js" />
+    <Content Include="Scripts\echarts\source\chart\funnel.js" />
+    <Content Include="Scripts\echarts\source\chart\gauge.js" />
+    <Content Include="Scripts\echarts\source\chart\heatmap.js" />
+    <Content Include="Scripts\echarts\source\chart\k.js" />
+    <Content Include="Scripts\echarts\source\chart\line.js" />
+    <Content Include="Scripts\echarts\source\chart\map.js" />
+    <Content Include="Scripts\echarts\source\chart\pie.js" />
+    <Content Include="Scripts\echarts\source\chart\radar.js" />
+    <Content Include="Scripts\echarts\source\chart\scatter.js" />
+    <Content Include="Scripts\echarts\source\chart\tree.js" />
+    <Content Include="Scripts\echarts\source\chart\treemap.js" />
+    <Content Include="Scripts\echarts\source\chart\venn.js" />
+    <Content Include="Scripts\echarts\source\chart\wordCloud.js" />
+    <Content Include="Scripts\echarts\source\echarts-all.js" />
+    <Content Include="Scripts\echarts\source\echarts.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Content\css\boostrap\bootstrap-theme.css.map" />
     <Content Include="Content\css\boostrap\bootstrap-theme.min.css.map" />
@@ -110,6 +134,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\echarts\source\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
